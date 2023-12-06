@@ -27,7 +27,7 @@ function HeaderButtons() {
     <div className="flex items-center justify-around my-6">
       {cities.map((city) => {
         return (
-          <button className="text-white text-lg fon-medium transition ease-out hover:scale-105" key={city.id}>
+          <button className="text-white text-lg font-medium transition ease-out hover:scale-105" key={city.id}>
             {city.name}
           </button>
         );
