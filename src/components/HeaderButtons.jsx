@@ -1,5 +1,3 @@
-import React from "react";
-
 function HeaderButtons({setQuery}) {
   const cities = [
     {

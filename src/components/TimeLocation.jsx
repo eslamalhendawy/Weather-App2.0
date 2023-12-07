@@ -1,4 +1,3 @@
-import React from 'react'
 import { formatToLocalTime } from '../services/weatherServices'
 
 function TimeLocation({weather : {dt, name, country}}) {

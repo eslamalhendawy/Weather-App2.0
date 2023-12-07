@@ -1,5 +1,3 @@
-import React from 'react'
-
 function Forecast({title}) {
   return (
     <div>

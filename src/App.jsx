@@ -24,6 +24,7 @@ function App() {
         toast.success(`Successfully fetched weather for ${data.name}, ${data.country}`);
       }).catch((e) => {
         toast.error("City not found");
+        console.log(e);
       });
     };
 

@@ -4,7 +4,7 @@ import { iconUrlFromCode } from "../services/weatherServices";
 function TempratureAndDetails({weather: {details, temp, icon, feels_like, humidity, speed, temp_max, temp_min}}) {
   return (
     <div>
-      <div className="flex items-center justify-center py-6 sm:text-xl text--base text-cyan-300">
+      <div className="flex items-center justify-center py-6 sm:text-xl text--base text-white">
         <p>{details}</p>
       </div>
       <div className="flex flex-row items-center sm:justify-between justify-evenly text-white py-3">
