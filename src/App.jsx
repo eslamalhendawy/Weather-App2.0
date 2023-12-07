@@ -1,33 +1,60 @@
-import { useState } from "react";
-import UilReact from "@iconscout/react-unicons/icons/uil-react";
+import { useEffect, useState } from "react";
+import { ToastContainer, toast } from 'react-toastify';
 import HeaderButtons from "./components/HeaderButtons";
 import Inputs from "./components/Inputs";
 import TimeLocation from "./components/TimeLocation";
 import TempratureAndDetails from "./components/TempratureAndDetails";
-import Forecast from "./components/Forecast";
 
 import getFormattedWeatherData from "./services/weatherServices";
 
 import "./App.css";
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
-  const fetchWeather = async () => {
-    const data = await getFormattedWeatherData({ q: "cairo" });
-    console.log(data);
-  };
+  const [query, setQuery] = useState({ q: "cairo" });
+  const [units, setUnits] = useState("metric");
+  const [weather, setWeather] = useState(null);
 
-  fetchWeather();
+  useEffect(() => {
+    const fetchWeather = async () => {
+      const message = query.q ? query.q : "current location";
+      toast.info("Fetching weather for " + message);
+      await getFormattedWeatherData({ ...query, units }).then((data) => {
+        setWeather(data);
+        toast.success(`Successfully fetched weather for ${data.name}, ${data.country}`);
+      });
+    };
+
+    fetchWeather();
+  }, [query, units]);
+
+  const formatBackground = () => {
+    if(!weather) {
+      return "from-cyan-700 to-blue-700";
+    }
+    const threshold = units === "metric" ? 20 : 68;
+    if(weather.temp <= threshold) {
+      return "from-cyan-700 to-blue-700";
+    }else {
+      return "from-yellow-700 to-orange-700";
+    }
+  }
 
   return (
     <div className="flex justify-center items-center h-screen">
-      <div className="mx-auto max-w-screen-md mb-6 px-32 py-5 bg-gradient-to-br from-cyan-700 to-blue-700 h-fit shadow-xl shadow-gray-400">
-        <HeaderButtons />
-        <Inputs />
-        <TimeLocation />
-        <TempratureAndDetails />
+      <div className={`mx-auto max-w-screen-md mb-6 px-32 py-5 bg-gradient-to-br  h-fit shadow-xl shadow-gray-400 ${formatBackground()}`}>
+        <HeaderButtons setQuery={setQuery}/>
+        <Inputs setQuery={setQuery} units={units} setUnits={setUnits}/>
+        {weather && (
+          <>
+            <TimeLocation weather={weather}/>
+            <TempratureAndDetails weather={weather} />
+          </>
+        )}
         {/* <Forecast title="Hourly Forecast" />
     <Forecast title="Daily Forecast" /> */}
       </div>
+      <ToastContainer autoClose={5000} theme="colored" newestOnTop={true} />
     </div>
   );
 }
