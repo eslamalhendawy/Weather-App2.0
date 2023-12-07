@@ -57,7 +57,7 @@ function App() {
         {/* <Forecast title="Hourly Forecast" />
     <Forecast title="Daily Forecast" /> */}
       </div>
-      <ToastContainer autoClose={5000} theme="colored" newestOnTop={true} />
+      <ToastContainer autoClose={2500} theme="colored" newestOnTop={true} />
     </div>
   );
 }
