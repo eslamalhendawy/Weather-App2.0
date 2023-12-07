@@ -44,7 +44,7 @@ function App() {
 
   return (
     <div className="flex justify-center items-center h-screen bg-[#E6F4F1]">
-      <div className={`mx-auto max-w-screen-md mb-6 px-32 py-5 bg-gradient-to-br  h-fit shadow-xl shadow-gray-400 ${formatBackground()}`}>
+      <div className={`mx-auto max-w-screen-md md:px-32 sm:px-16 px-4 py-5 bg-gradient-to-br  h-fit shadow-xl shadow-gray-400 ${formatBackground()}`}>
         <HeaderButtons setQuery={setQuery}/>
         <Inputs setQuery={setQuery} units={units} setUnits={setUnits}/>
         {weather && (
