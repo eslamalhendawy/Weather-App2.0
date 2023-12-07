@@ -22,6 +22,8 @@ function App() {
       await getFormattedWeatherData({ ...query, units }).then((data) => {
         setWeather(data);
         toast.success(`Successfully fetched weather for ${data.name}, ${data.country}`);
+      }).catch((e) => {
+        toast.error("City not found");
       });
     };
 
