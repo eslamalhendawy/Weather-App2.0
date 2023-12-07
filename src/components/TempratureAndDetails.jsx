@@ -30,7 +30,6 @@ function TempratureAndDetails({weather: {details, temp, icon, feels_like, humidi
         </div>
       </div>
       <div className="flex flex-row item-center justify-center text-white space-x-2 text-sm py-3">
-        <UilSun  />
         {/* <p className="font-light ">Rise: <span className="font-medium ml-1 ">{formatToLocalTime(sunrise, "hh:mm a")}</span></p>
         <p className="font-light">|</p>
         <UilSunset  />
